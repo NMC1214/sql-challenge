@@ -1,20 +1,69 @@
---List the following details of each employee: employee number, last name, first name, sex, and salary.
-SELECT "emp_no", "last_name", "first_name", "sex" 
-FROM "Employees"
-INNER JOIN "Salaries" on "Employees"."emp_no" = "Salaries"."emp_no";
+--1.List the following details of each employee: employee number, last name, first name, sex, and salary.
+SELECT Employees.emp_no, 
+	Employees.last_name, 
+	Employees.first_name, 
+	Employees.sex,
+	Salaries.salary
+FROM Salaries
+INNER JOIN Employees on Employees.emp_no = Salaries.emp_no;
 
-SELECT * FROM "Employees";
+--2.List first name, last name, and hire date for employees who were hired in 1986.
+SELECT first_name,
+	last_name,
+	hire_date
+FROM Employees
+WHERE hire_date BETWEEN '1985-12-31' AND '1987-01-01';
 
---List first name, last name, and hire date for employees who were hired in 1986.
+--3.List the manager of each department with the following information: department number, 
+--department name, the manager's employee number, last name, first name.
+SELECT Dept_Manager.Dept_no,
+	Departments.Dept_name,
+	Employees.Emp_no,
+	Employees.last_name,
+	Employees.first_name
+FROM Employees
+INNER JOIN Dept_Manager on Employees.Emp_no = Dept_Manager.emp_no
+INNER JOIN Departments on Departments.Dept_no = Dept_Manager.Dept_no;
 
---List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
+--4.List the department of each employee with the following information: employee number, last name, first name, and department name.
+SELECT Employees.Emp_no,
+	Employees.last_name,
+	Employees.first_name,
+	Departments.Dept_name
+FROM Employees
+INNER JOIN Dept_Emp on Employees.Emp_no = Dept_Emp.emp_no
+INNER JOIN Departments on Departments.Dept_no = Dept_Emp.Dept_no;
 
---List the department of each employee with the following information: employee number, last name, first name, and department name.
+--5.List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
+SELECT Employees.first_name,
+	Employees.last_name,
+	Employees.sex
+FROM Employees
+WHERE Employees.last_name ~ '^B' AND Employees.first_name = 'Hercules';
 
---List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
+--6.List all employees in the Sales department, including their employee number, last name, first name, and department name.
+SELECT Employees.Emp_no,
+	Employees.last_name,
+	Employees.first_name,
+	Departments.dept_name
+FROM Employees
+INNER JOIN Dept_Emp on Employees.Emp_no = Dept_Emp.emp_no
+INNER JOIN Departments on Departments.Dept_no = Dept_Emp.Dept_no
+WHERE Departments.dept_name = 'Sales';
 
---List all employees in the Sales department, including their employee number, last name, first name, and department name.
+--7.List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
+SELECT Employees.Emp_no,
+	Employees.last_name,
+	Employees.first_name,
+	Departments.dept_name
+FROM Employees
+INNER JOIN Dept_Emp on Employees.Emp_no = Dept_Emp.emp_no
+INNER JOIN Departments on Departments.Dept_no = Dept_Emp.Dept_no
+WHERE Departments.dept_name = 'Sales' OR Departments.dept_name = 'Development';
 
---List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
-
---In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+--8.In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+SELECT DISTINCT Employees.last_name,
+	COUNT(Employees.last_name) AS last_name_count
+FROM Employees
+GROUP BY Employees.last_name
+ORDER BY last_name_count DESC; 
