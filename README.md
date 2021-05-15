@@ -9,6 +9,7 @@ In this assignment, you will design the tables to hold data in the CSVs, import 
 Data Engineering
 
 Data Analysis
+
 Once you have a complete database, do the following:
 
     -List the following details of each employee: employee number, last name, first name, sex, and salary.
