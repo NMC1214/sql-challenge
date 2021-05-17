@@ -19,24 +19,6 @@ CREATE TABLE Departments (
      )
 );
 
---create salaries table
-CREATE TABLE Salaries (
-    emp_no INT   NOT NULL,
-    salary INT   NOT NULL
-);
-
---create dept employees table
-CREATE TABLE Dept_Emp (
-    emp_no INT   NOT NULL,
-    dept_no VARCHAR   NOT NULL
-);
-
---create dept manager table
-CREATE TABLE Dept_Manager (
-    dept_no VARCHAR   NOT NULL,
-    emp_no INT   NOT NULL
-);
-
 --create titles table
 CREATE TABLE Titles (
     title_id VARCHAR   NOT NULL,
@@ -58,6 +40,24 @@ CREATE TABLE Employees (
     CONSTRAINT pk_Employees PRIMARY KEY (
         emp_no
      )
+);
+
+--create salaries table
+CREATE TABLE Salaries (
+    emp_no INT   NOT NULL,
+    salary INT   NOT NULL
+);
+
+--create dept employees table
+CREATE TABLE Dept_Emp (
+    emp_no INT   NOT NULL,
+    dept_no VARCHAR   NOT NULL
+);
+
+--create dept manager table
+CREATE TABLE Dept_Manager (
+    dept_no VARCHAR   NOT NULL,
+    emp_no INT   NOT NULL
 );
 
 --add foreign key restraints

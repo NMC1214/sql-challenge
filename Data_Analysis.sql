@@ -67,3 +67,13 @@ SELECT DISTINCT Employees.last_name,
 FROM Employees
 GROUP BY Employees.last_name
 ORDER BY last_name_count DESC; 
+
+--Bonus -- salaries and title for each employee
+SELECT Employees.Emp_no,
+	Employees.last_name,
+	Employees.first_name,
+	Salaries.salary,
+	Titles.title
+FROM Employees
+INNER JOIN Salaries on Employees.Emp_no = Salaries.Emp_no
+INNER JOIN Titles on Employees.title_id = Titles.title_id;
